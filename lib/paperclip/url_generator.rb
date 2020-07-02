@@ -9,7 +9,7 @@ module Paperclip
 
     def for(style_name, options)
       interpolated = attachment_options[:interpolator].interpolate(
-        most_appropriate_url, @attachment, style_name
+          most_appropriate_url, @attachment, style_name
       )
 
       escaped = escape_url_as_needed(interpolated, options)
@@ -65,7 +65,8 @@ module Paperclip
       if url.respond_to?(:escape)
         url.escape
       else
-        URI.encode_www_form_component(url).gsub(escape_regex){|m| "%#{m.ord.to_s(16).upcase}" }&.html_safe
+        # URI.encode_www_form_component(url).gsub(escape_regex) { |m| "%#{m.ord.to_s(16).upcase}" }
+        url
       end
     end
 
